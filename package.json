@@ -1,0 +1,19 @@
+{
+  "name": "emrep",
+  "version": "1.0.0",
+  "description": "Gets a base e-mail marketing piece and replaces links with the tracked URLs and local images with published images.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Renato Lombardero",
+  "license": "UNLICENSED",
+  "preferGlobal": true,
+  "bin": {
+    "emrep": "index.js"
+  },
+  "dependencies": {
+    "asciify": "^1.3.5",
+    "inquirer": "^2.0.0"
+  }
+}

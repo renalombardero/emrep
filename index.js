@@ -2,38 +2,56 @@
 'use strict'
 
 const inquirer = require('inquirer')
-const asciify = require('asciify')
+const clear    = require('clear')
+const asciify  = require('asciify')
+const fs       = require('fs')
+const path     = require('path')
 
-asciify('Teste', {font:'Lean',color:'cyan'}, (err,res) => { console.log(res) })
+const questions = require('./questions')
+
+clear()
+
+asciify('EmRep', {font:'Lean',color:'cyan'}, (err,res) => { 
+  // console.log(res)
+  init()
+})
 
 var prompt = inquirer.createPromptModule()
 
-var questions = {}
-
-questions.main = [
-  {
-    type: 'list',
-    message: '++ MENU ++',
-    name: 'mainMenu',
-    choices: [
-      {
-        name: 'Ler CSV'
-      },
-      {
-        name: 'Exportar HTMLs'
-      },
-      new inquirer.Separator(),
-      {
-        name: 'Sair'
-      }
-    ]
-  }
-]
-
-// init()
-
 function init() {
-  prompt(questions.main).then(function (answers) {
-    console.log(JSON.stringify(answers, null, '  '));
+  prompt(questions.main).then((answers) => {
+    // console.log(answers.mainMenu);
+
+    switch (answers.mainMenu) {
+      case 'loadCSV' : 
+        loadCSV()
+        break
+      case 'loadHTML' : 
+        loadHTML()
+        break
+      case 'export' : 
+        exportHTML()
+        break
+      case 'exit' : 
+        quitEmRep()
+        break
+    }
   });
+}
+
+function loadCSV() {
+  console.log('CSV')
+}
+
+function loadHTML() {
+  console.log('HTML')
+}
+
+function exportHTML() {
+  console.log('Export')
+}
+
+function quitEmRep() {
+  clear()
+  console.log('End')
 }

@@ -27,11 +27,8 @@ function mainMenu(init) {
   if (!init) {
     clear()
   }
-  console.log(questions.csv)
 
   prompt(questions.main).then((answers) => {
-    // console.log(answers.mainMenu);
-
     switch (answers.mainMenu) {
       case 'loadCSV' :
         loadCSV()

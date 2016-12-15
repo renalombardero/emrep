@@ -28,6 +28,14 @@ var questions = {
         }
       ]
     }
+  ],
+  csv : [
+    {
+      type: 'list',
+      message: '== Escolha um arquivo CSV ==',
+      name: 'chooseCSV',
+      choices: []
+    }
   ]
 }
 

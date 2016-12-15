@@ -1,0 +1,7 @@
+tag;veiculo;link;tagged link
+#home;a1;http://teste.com/home/;http://teste.com/home/?a1
+#masculino;a1;http://teste.com/masculino/;http://teste.com/masculino/?a1
+#feminino;a1;http://teste.com/feminino/;http://teste.com/feminino/?a1
+#home;b2;http://teste.com/home/;http://teste.com/home/?b2
+#masculino;b2;http://teste.com/masculino/;http://teste.com/masculino/?b2
+#feminino;b2;http://teste.com/feminino/;http://teste.com/feminino/?b2

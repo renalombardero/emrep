@@ -4,6 +4,7 @@
 const inquirer = require('inquirer')
 const clear    = require('clear')
 const asciify  = require('asciify')
+const chalk    = require('chalk')
 const fs       = require('fs')
 const path     = require('path')
 
@@ -11,7 +12,7 @@ const questions = require('./questions')
 
 clear()
 
-asciify('EmRep', {font:'Lean',color:'cyan'}, (err,res) => { 
+asciify('EmRep', {font:'Lean',color:'cyan'}, (err,res) => {
   // console.log(res)
   init()
 })
@@ -19,20 +20,29 @@ asciify('EmRep', {font:'Lean',color:'cyan'}, (err,res) => {
 var prompt = inquirer.createPromptModule()
 
 function init() {
+  mainMenu(true)
+}
+
+function mainMenu(init) {
+  if (!init) {
+    clear()
+  }
+  console.log(questions.csv)
+
   prompt(questions.main).then((answers) => {
     // console.log(answers.mainMenu);
 
     switch (answers.mainMenu) {
-      case 'loadCSV' : 
+      case 'loadCSV' :
         loadCSV()
         break
-      case 'loadHTML' : 
+      case 'loadHTML' :
         loadHTML()
         break
-      case 'export' : 
+      case 'export' :
         exportHTML()
         break
-      case 'exit' : 
+      case 'exit' :
         quitEmRep()
         break
     }
@@ -40,7 +50,37 @@ function init() {
 }
 
 function loadCSV() {
-  console.log('CSV')
+  var i
+  var csvQ = questions.csv
+
+  clear()
+
+  fs.readdir('.', (err, files) => {
+    if (files.length) {
+      for (i in files) {
+        if (path.extname(files[i]) == '.csv') {
+          csvQ[0].choices.push({name:files[i]})
+        }
+      }
+      if (csvQ[0].choices.length) {
+        csvQ[0].choices.push(new inquirer.Separator())
+        csvQ[0].choices.push({name: '<- Voltar',value:'back'})
+        prompt(csvQ).then((answers) => {
+          if (answers.chooseCSV != 'back') {
+            console.log(answers.chooseCSV)
+          }
+          csvQ[0].choices = []
+          mainMenu()
+        })
+      } else {
+        console.log(chalk.bgRed(' Nenhum arquivo encontrado '))
+        mainMenu()
+      }
+    } else {
+      console.log(chalk.bgRed(' Nenhum arquivo encontrado '))
+      mainMenu()
+    }
+  })
 }
 
 function loadHTML() {

@@ -33,7 +33,15 @@ var questions = {
     {
       type: 'list',
       message: '== Escolha um arquivo CSV ==',
-      name: 'chooseCSV',
+      name: 'chooseFile',
+      choices: []
+    }
+  ],
+  html : [
+    {
+      type: 'list',
+      message: '== Escolha um arquivo HTML ==',
+      name: 'chooseFile',
       choices: []
     }
   ]

@@ -9,11 +9,17 @@ const fs       = require('fs')
 const path     = require('path')
 
 const questions = require('./questions')
+const msg       = require('./messages')
 
-clear()
+var items = {
+  csv  : "",
+  html : ""
+}
+
 
 asciify('EmRep', {font:'Lean',color:'cyan'}, (err,res) => {
-  // console.log(res)
+  clear()
+  console.log(res)
   init()
 })
 
@@ -31,10 +37,10 @@ function mainMenu(init) {
   prompt(questions.main).then((answers) => {
     switch (answers.mainMenu) {
       case 'loadCSV' :
-        loadCSV()
+        loadFile("csv")
         break
       case 'loadHTML' :
-        loadHTML()
+        loadFile("html")
         break
       case 'export' :
         exportHTML()
@@ -46,42 +52,50 @@ function mainMenu(init) {
   });
 }
 
-function loadCSV() {
+function loadFile(ext) {
   var i
-  var csvQ = questions.csv
+  var q
 
-  clear()
+  if (ext == "csv") {
+    q = questions.csv
+  } else if (ext == "html") {
+    q = questions.html
+  }
 
   fs.readdir('.', (err, files) => {
     if (files.length) {
       for (i in files) {
-        if (path.extname(files[i]) == '.csv') {
-          csvQ[0].choices.push({name:files[i]})
+        if (path.extname(files[i]) == '.' + ext) {
+          q[0].choices.push({name:files[i]})
         }
       }
-      if (csvQ[0].choices.length) {
-        csvQ[0].choices.push(new inquirer.Separator())
-        csvQ[0].choices.push({name: '<- Voltar',value:'back'})
-        prompt(csvQ).then((answers) => {
-          if (answers.chooseCSV != 'back') {
-            console.log(answers.chooseCSV)
+      if (q[0].choices.length) {
+        q[0].choices.push(new inquirer.Separator())
+        q[0].choices.push({name: '<- Voltar',value:'back'})
+        prompt(q).then((answers) => {
+          if (answers.chooseFile != 'exit') {
+            items[ext] = answers.chooseFile
+            q[0].choices = []
+            console.log(chalk.green(msg[ext + "Loaded"].replace('%r', items[ext])))
+
+            mainMenu(true)
+          } else {
+            q[0].choices = []
+            mainMenu()
           }
-          csvQ[0].choices = []
-          mainMenu()
         })
       } else {
-        console.log(chalk.bgRed(' Nenhum arquivo encontrado '))
-        mainMenu()
+        console.log(chalk.bgRed(msg.noFile))
+        mainMenu(true)
       }
     } else {
-      console.log(chalk.bgRed(' Nenhum arquivo encontrado '))
-      mainMenu()
+      console.log(chalk.bgRed(msg.noFile))
+      mainMenu(true)
     }
   })
-}
 
-function loadHTML() {
-  console.log('HTML')
+
+  clear()
 }
 
 function exportHTML() {
@@ -90,5 +104,6 @@ function exportHTML() {
 
 function quitEmRep() {
   clear()
+  console.log(items)
   console.log('End')
 }

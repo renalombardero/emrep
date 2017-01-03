@@ -10,6 +10,7 @@ const path     = require('path')
 
 const questions = require('./questions')
 const msg       = require('./messages')
+const exporter  = require('./exporter')
 
 var items = {
   csv  : "",
@@ -29,8 +30,8 @@ function init() {
   mainMenu(true)
 }
 
-function mainMenu(init) {
-  if (!init) {
+function mainMenu(noClear) {
+  if (!noClear) {
     clear()
   }
 
@@ -43,7 +44,7 @@ function mainMenu(init) {
         loadFile("html")
         break
       case 'export' :
-        exportHTML()
+        exporter.html(items).then(exportHTML)
         break
       case 'exit' :
         quitEmRep()
@@ -94,12 +95,13 @@ function loadFile(ext) {
     }
   })
 
-
   clear()
 }
 
-function exportHTML() {
-  console.log('Export')
+function exportHTML(res) {
+  clear()
+  console.log(res)
+  mainMenu(true)
 }
 
 function quitEmRep() {

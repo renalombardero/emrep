@@ -100,7 +100,11 @@ function loadFile(ext) {
 
 function exportHTML(res) {
   clear()
-  console.log(res)
+  if (res.type == "warn") {
+    console.log(chalk.yellow(res.text))
+  } else if (res.type == "success") {
+    console.log(chalk.green(res.text))
+  }
   mainMenu(true)
 }
 

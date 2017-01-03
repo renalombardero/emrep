@@ -10,10 +10,10 @@ function _html (items) {
   console.log("run")
   return new Promise((resolve, reject) => {
     clear()
-    if (true) {
-      resolve({type: "err", res: msg.notAllFiles})
+    if (items.csv && items.html) {
+      resolve({type: "success", text: msg.htmlExported.replace('%n', '3').replace('%f', 'EXPORT')})
     } else {
-      reject({type: "err", res: msg.notAllFiles})
+      resolve({type: "warn", text: msg.notAllFiles})
     }
   })
 }

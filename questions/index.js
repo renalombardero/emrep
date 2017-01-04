@@ -44,7 +44,33 @@ var questions = {
       name: 'chooseFile',
       choices: []
     }
-  ]
+  ],
+  processor : {
+    group : [
+      {
+        type: 'list',
+        message: '== Qual o campo do VEÍCULO? ==',
+        name: 'group',
+        choices: []
+      }
+    ],
+    from : [
+      {
+        type: 'list',
+        message: '== Qual o campo que será ALTERADO? ==',
+        name: 'from',
+        choices: []
+      }
+    ],
+    to : [
+      {
+        type: 'list',
+        message: '== Qual o campo do novo VALOR? ==',
+        name: 'to',
+        choices: []
+      }
+    ]
+  }
 }
 
 module.exports = questions

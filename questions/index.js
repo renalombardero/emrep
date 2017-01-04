@@ -69,6 +69,14 @@ var questions = {
         name: 'to',
         choices: []
       }
+    ],
+    dir : [
+      {
+        type: 'list',
+        message: '== Qual a pasta onde serão salvos os HTMLs exportados? ==',
+        name: 'dir',
+        choices: []
+      }
     ]
   }
 }

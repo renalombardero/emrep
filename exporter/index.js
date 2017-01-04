@@ -1,17 +1,18 @@
 'use strict'
 
-const inquirer = require('inquirer')
-const clear    = require('clear')
-const fs       = require('fs')
-const parse    = require('csv-parse/lib/sync')
-const Spinner  = require('cli-spinner').Spinner
+const inquirer   = require('inquirer')
+const clear      = require('clear')
+const fs         = require('fs')
+const dateformat = require('dateformat')
+const parse      = require('csv-parse/lib/sync')
+const Spinner    = require('cli-spinner').Spinner
 
 const questions = require('../questions').processor
 const msg       = require('../messages')
 
 function _html (items) {
-  var targetDir = "EXPORT"
-  var emailCount = 5
+  var emailCount = 0
+  var targetDir
   var CSVstring
   var HTMLbase
   var records
@@ -19,11 +20,13 @@ function _html (items) {
   var processedEmails = {}
   var spinner = new Spinner(msg.spinner)
   var prompt = inquirer.createPromptModule()
+  var now = dateformat(new Date(), "yyyymmdd")
 
   var fields = {
     group : -1,
     from  : -1,
-    to    : -1
+    to    : -1,
+    dir   : ""
   }
 
   spinner.setSpinnerString('|/-\\')
@@ -65,10 +68,23 @@ function _html (items) {
               processedEmails[records[i][fields.group]] = HTMLbase.toString()
             }
 
-            console.log(processedEmails)
+            for (i = 1; i < records.length; i++) {
+              processedEmails[records[i][fields.group]] = processedEmails[records[i][fields.group]].replace(records[i][fields.from],records[i][fields.to])
+            }
 
+            targetDir = "./" + now + "_" + items.html
 
-            process.exit()
+            if (!fs.existsSync(targetDir)){
+              fs.mkdirSync(targetDir);
+            }
+
+            for (var k in processedEmails) {
+              fs.writeFileSync(targetDir + "/" + now + "_" + k + "_" + items.html, processedEmails[k])
+              emailCount++
+            }
+
+            spinner.stop(true)
+
             resolve({type: "success", text: msg.htmlExported.replace('%n', emailCount).replace('%f', targetDir)})
           })
         })

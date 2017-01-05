@@ -2,6 +2,12 @@
 ##### CLI para replace em email
 ___
 
+### Requisitos
+- Node.js
+
+#### Versões de Node.js testadas
+- v7.2.1
+
 ### Instalação
 Clonar o repositório e rodar o comando:
 
@@ -61,9 +67,6 @@ Ex.:
 ```
 
 Podem ser exportados mais de um email por sessão.
-
-### Versões de Node.js testadas
-- v7.2.1
 
 ### TODO
 

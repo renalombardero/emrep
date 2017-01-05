@@ -64,6 +64,7 @@ Podem ser exportados mais de um email por sessão.
 
 ### TODO
 
+- Testar em outras versões de Node.js (só foi testado na **v7.2.1**)
 - Estudar possibilidade de fazer replace de caminho de imagens para quando os arquivos forem publicados e precisar incluir o caminho absoluto.
 - Fazer verificação com RegEx para limitar replace a links
 - Fazer verificação e substituir caso existam caracteres especiais (Ex. á é í ó ú)

@@ -40,15 +40,25 @@ emrep
 
 Os novos arquivos serão exportados em uma nova pasta com a seguinte nomenclatura:
 
+```
 ./YYYYMMDD_nomedoarquivo.html
+```
 
-Ex.: ./20170105_email.html
+Ex.:
+```
+./20170105_email.html
+```
 
 Cada email será exportado com a seguinte nomenclatura:
 
+```
 ./YYYYMMDD_nomedoarquivo.html/YYYYMMDD_veiculo_nomedoarquivo.html
+```
 
-Ex.: ./20170105_email.html/20170105_isobar_email.html
+Ex.:
+```
+./20170105_email.html/20170105_isobar_email.html
+```
 
 Podem ser exportados mais de um email por sessão.
 

@@ -85,6 +85,10 @@ function _html (items) {
 
             spinner.stop(true)
 
+            questions.group[0].choices = []
+            questions.from[0].choices = []
+            questions.to[0].choices = []
+
             resolve({type: "success", text: msg.htmlExported.replace('%n', emailCount).replace('%f', targetDir)})
           })
         })

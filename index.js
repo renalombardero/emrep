@@ -66,7 +66,7 @@ function loadFile(ext) {
   fs.readdir('.', (err, files) => {
     if (files.length) {
       for (i in files) {
-        if (path.extname(files[i]) == '.' + ext) {
+        if (path.extname(files[i]) == '.' + ext && fs.lstatSync(files[i]).isFile()) {
           q[0].choices.push({name:files[i]})
         }
       }

@@ -110,6 +110,4 @@ function exportHTML(res) {
 
 function quitEmRep() {
   clear()
-  // console.log(items)
-  // console.log('End')
 }

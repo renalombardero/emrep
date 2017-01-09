@@ -18,7 +18,7 @@ var items = {
 }
 
 
-asciify('EmRep', {font:'Lean',color:'cyan'}, (err,res) => {
+asciify('EmRep', {font:'Lean',color:'green'}, (err,res) => {
   clear()
   console.log(res)
   init()

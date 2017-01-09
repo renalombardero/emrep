@@ -12,7 +12,7 @@ ___
 Clonar o repositório e rodar o comando:
 
 ```
-npm link
+npm install -g emrep
 ```
 
 Após isso fica disponível o comando **emrep** para uso no terminal.
@@ -71,6 +71,9 @@ Podem ser exportados mais de um email por sessão.
 ### TODO
 
 - Testar em outras versões de Node.js
+- Alterar arquivo de mensagens e perguntas para facilitar localização.
+- Localizar e documentar em inglês.
+- Incluír possibilidade de usar a linha de comando, sem UI.
 - Estudar possibilidade de fazer replace de caminho de imagens para quando os arquivos forem publicados e precisar incluir o caminho absoluto.
 - Fazer verificação com RegEx para limitar replace a links
 - Fazer verificação e substituir caso existam caracteres especiais (Ex. á é í ó ú)

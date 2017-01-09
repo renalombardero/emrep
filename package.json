@@ -1,13 +1,13 @@
 {
   "name": "emrep",
   "version": "1.0.0",
-  "description": "Gets a base e-mail marketing piece and replaces links with the tracked URLs and local images with published images.",
+  "description": "CLI feito em Node.js para replicar múltiplos arquivos HTML com diferentes links, para campanhas de email marketing.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Renato Lombardero",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "preferGlobal": true,
   "bin": {
     "emrep": "index.js"

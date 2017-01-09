@@ -9,7 +9,7 @@ ___
 - v7.2.1
 
 ### Instalação
-Clonar o repositório e rodar o comando:
+Executar o comando:
 
 ```
 npm install -g emrep

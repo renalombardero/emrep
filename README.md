@@ -63,7 +63,7 @@ Cada email será exportado com a seguinte nomenclatura:
 
 Ex.:
 ```
-./20170105_email.html/20170105_isobar_email.html
+./20170105_email.html/20170105_agencia_email.html
 ```
 
 Podem ser exportados mais de um email por sessão.

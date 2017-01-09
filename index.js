@@ -3,11 +3,14 @@
 
 const inquirer = require('inquirer')
 const clear    = require('clear')
+const boxen    = require('boxen')
 const asciify  = require('asciify')
 const chalk    = require('chalk')
 const fs       = require('fs')
 const path     = require('path')
+const updateNotifier = require('update-notifier')
 
+const pkg       = require('./package.json')
 const questions = require('./questions')
 const msg       = require('./messages')
 const exporter  = require('./exporter')
@@ -16,10 +19,19 @@ var items = {
   csv  : "",
   html : ""
 }
+var notify = updateNotifier({
+    pkg,
+    updateCheckInterval: 1000 * 60 * 60 * 24 // 1 dia
+});
 
 
 asciify('EmRep', {font:'Lean',color:'green'}, (err,res) => {
   clear()
+
+  if (notify.update !== undefined) {
+    showUpdateMsg(notify.update)
+  }
+
   console.log(res)
   init()
 })
@@ -110,4 +122,25 @@ function exportHTML(res) {
 
 function quitEmRep() {
   clear()
+}
+
+function showUpdateMsg(notification) {
+  if (notification.latest != notification.current)
+  {
+    var returnMessage = ""
+
+    returnMessage = chalk.green(msg.update.title) + "\n\n"
+    returnMessage = returnMessage + msg.update.current + chalk.red(notification.current) + "\n"
+    returnMessage = returnMessage + msg.update.latest + chalk.green(notification.latest) + "\n\n"
+    returnMessage = returnMessage + msg.update.howto + "\n"
+    returnMessage = returnMessage + chalk.bgBlue(msg.update.cmd)
+
+    console.log(boxen(returnMessage, {
+      padding: 1,
+      margin: 1,
+      borderColor: 'green',
+      borderStyle: 'classic'
+    }))
+  }
+
 }

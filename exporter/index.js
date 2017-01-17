@@ -69,7 +69,7 @@ function _html (items) {
             }
 
             for (i = 1; i < records.length; i++) {
-              processedEmails[records[i][fields.group]] = processedEmails[records[i][fields.group]].replace(records[i][fields.from],records[i][fields.to])
+              processedEmails[records[i][fields.group]] = processedEmails[records[i][fields.group]].replaceAll(records[i][fields.from],records[i][fields.to])
             }
 
             targetDir = "./" + now + "_" + items.html

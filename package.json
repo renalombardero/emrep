@@ -21,6 +21,7 @@
     "csv": "^1.1.0",
     "dateformat": "^2.0.0",
     "inquirer": "^2.0.0",
+    "replaceall": "^0.1.6",
     "update-notifier": "^1.0.3"
   }
 }

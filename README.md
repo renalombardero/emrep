@@ -30,9 +30,7 @@ No **csv** precisamos de pelo menos 3 colúnas contendo os seguintes dados:
 - **NOVO VALOR ( PARA )**
    Este campo contem o valor que será salvo no novo **html**
 
-O arquivo também tem que estar separado por *ponto e virgula (;)* e não só por virgula (i). O Excel já exporta o arquivo desse jeito.
-
-**_DETALHE:_** Existem dois arquivos **csv** e dois **html** de exemplo na pasta **_example_**.
+**_DETALHE:_** Existem três arquivos **csv** e dois **html** de exemplo na pasta **_example_**.
 
 Tendo esses arquivos, executar o comando no terminal e seguir os passos.
 

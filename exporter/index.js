@@ -5,6 +5,7 @@ const clear      = require('clear')
 const fs         = require('fs')
 const dateformat = require('dateformat')
 const parse      = require('csv-parse/lib/sync')
+const detect     = require('detect-csv')
 const replaceall = require('replaceall')
 const Spinner    = require('cli-spinner').Spinner
 
@@ -15,6 +16,7 @@ function _html (items) {
   var emailCount = 0
   var targetDir
   var CSVstring
+  var CSVproperties
   var HTMLbase
   var records
   var header
@@ -36,8 +38,15 @@ function _html (items) {
     if (items.csv && items.html) {
       spinner.start()
       CSVstring = fs.readFileSync(items.csv)
+      CSVproperties = detect(CSVstring)
       HTMLbase = fs.readFileSync(items.html)
-      records = parse(CSVstring, {delimiter: ";"})
+
+      if (!CSVproperties) {
+        spinner.stop(true)
+        resolve({type: "warn", text: msg.notCSVFile})
+      }
+
+      records = parse(CSVstring, {delimiter: CSVproperties.delimiter})
       header = records[0]
 
       for (var i = 0; i < header.length; i++) {

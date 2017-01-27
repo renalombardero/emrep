@@ -25,7 +25,7 @@ var notify = updateNotifier({
 });
 
 
-asciify('EmRep', {font:'Lean',color:'green'}, (err,res) => {
+asciify('EmRep', {font:'Doom',color:'green'}, (err,res) => {
   clear()
 
   if (notify.update !== undefined) {

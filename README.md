@@ -2,6 +2,8 @@
 ##### CLI para replace em email
 ___
 
+[![NPM](https://nodei.co/npm/emrep.png?compact=true)](https://nodei.co/npm/emrep/)
+
 ### Requisitos
 - Node.js
 

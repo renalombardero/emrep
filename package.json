@@ -1,6 +1,6 @@
 {
   "name": "emrep",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "CLI feito em Node.js para replicar múltiplos arquivos HTML com diferentes links, para campanhas de email marketing.",
   "main": "index.js",
   "scripts": {
